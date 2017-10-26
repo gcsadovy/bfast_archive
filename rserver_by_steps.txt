@@ -1,0 +1,43 @@
+#r
+echo "deb http://cran.ma.imperial.ac.uk/bin/linux/ubuntu precise/" | sudo tee -a /etc/apt/sources.list; gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E084DAB9; gpg -a --export E084DAB9 | sudo apt-key add -; sudo apt-get update; sudo apt-get install r-base
+gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E084DAB9
+gpg -a --export E084DAB9 | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install r-base
+
+#rstudio
+sudo apt-get install gdebi-core; sudo apt-get install libapparmor1; wget http://download2.rstudio.org/rstudio-server-0.98.507-amd64.deb; sudo gdebi rstudio-server-0.98.507-amd64.deb
+sudo apt-get install libapparmor1 # Required only for Ubuntu, not Debian
+wget http://download2.rstudio.org/rstudio-server-0.98.507-amd64.deb
+sudo gdebi rstudio-server-0.98.507-amd64.deb
+
+
+
+#devtools
+sudo apt-get -y build-dep libcurl4-gnutls-dev; sudo apt-get -y install libcurl4-gnutls-dev
+sudo apt-get -y install libcurl4-gnutls-dev
+
+#firewall
+sudo ufw enable; sudo ufw allow 80; sudo ufw allow 5001; sudo ufw allow 8787
+sudo ufw allow 80
+sudo ufw allow 5001
+sudo ufw allow 8787
+
+#http://trac.osgeo.org/gdal/wiki/BuildHints
+
+#gdal
+sudo apt-get -y install subversion g++ libhdf4-alt-dev; svn checkout https://svn.osgeo.org/gdal/trunk/gdal gdal; cd gdal; ./configure; sudo make install
+sudo apt-get -y install g++
+#sudo apt-get -y install libhdf4-alt-dev (try with and without)
+svn checkout https://svn.osgeo.org/gdal/trunk/gdal gdal; cd gdal; ./configure; sudo make install
+cd gdal
+./configure
+sudo make install
+
+#rgdal
+sudo apt-get install libspatialite-dev
+sudo apt-get install libgdal-dev libgdal1-dev libspatialite-dev
+sudo apt-get install libgdal1-dev
+
+#total
+echo "deb http://cran.ma.imperial.ac.uk/bin/linux/ubuntu precise/" | sudo tee -a /etc/apt/sources.list; gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E084DAB9; gpg -a --export E084DAB9 | sudo apt-key add -; sudo apt-get update; sudo apt-get install r-base; sudo apt-get -y build-dep libcurl4-gnutls-dev; sudo apt-get -y install libcurl4-gnutls-dev; sudo ufw enable; sudo ufw allow 80; sudo ufw allow 5001; sudo ufw allow 8787; sudo apt-get install python-software-properties; sudo add-apt-repository ppa:marutter/c2d4u; sudo apt-get update; sudo apt-get install r-cran-rgdal; sudo apt-get install gdebi-core; sudo apt-get install libapparmor1; wget http://download2.rstudio.org/rstudio-server-0.98.507-amd64.deb; sudo gdebi rstudio-server-0.98.507-amd64.deb
